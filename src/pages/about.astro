@@ -1,74 +1,74 @@
-<body>
-    <main>
-		<h1>Mi sitio <span class="text-gradient">Astro</span></h1>
+---
+import '../styles/global.css';
+
+const pageTitle = "Sobre mi";
+
+const identity = {
+  firstName: "Sebastián",
+  country: "Argentina",
+  occupation: "Escritor técnico",
+  hobbies: ["Programar", "Jugar juegos", "rolear"],
+};
+
+const skills = ["HTML", "CSS", "JavaScript", "React", "Astro", "Redacción de documentos"];
+
+const happy = true;
+const finished = false;
+const goal = 3;
+
+const skillColor = "navy";
+const fontWeight = "bold";
+const textCase = "uppercase";
+---
+
+<html lang="es">
+    <head>
+        <meta charset="utf-8"/>
+        <meta name="viewport" content="width=device-width" />
+        <title>{pageTitle}</title>
+		<style define:vars={{skillColor, fontWeight, textCase}}>
+			h1 {
+			  color: purple;
+			  font-size: 4rem;
+			}
+			.skill {
+   				color:var(--skillColor);
+    			font-weight:var(--fontWeight);
+				text-transform:var(--textCase);
+  			}
+		  </style>
+    </head>
+    <body>
         <a href="/">Inicio</a>
         <a href="/about/">Sobre mi</a>
         <a href="/blog/">Blog</a>
-        <h1>Sobre mi</h1>
-        <h2>... ¡y mi nuevo sitio Astro!</h2>
-		<p class="instructions">
-			Estoy trabajando en el tutorial introductorio de Astro. Esta es la segunda página de mi sitio web, ¡y es la primera que he construido yo mismo!<br />
-			Este sitio se irá actualizando a medida que vaya completando más partes del tutorial, ¡así que no dejes de visitarlo para ver cómo va mi viaje!
-		</p>
-	</main>
+        <h1>{pageTitle}</h1>
+         <h2>... ¡y mi nuevo sitio Astro!</h2>
+        <p class="instructions">
+               Estoy trabajando en el tutorial introductorio de Astro. Esta es la segunda página de mi sitio web, ¡y es la primera que he construido yo mismo!<br />
+               Este sitio se irá actualizando a medida que vaya completando más partes del tutorial, ¡así que no dejes de visitarlo para ver cómo va mi viaje!
+        </p>
+		<p>He aquí algunos datos sobre mí:</p>
+		<ul>
+		  <li>Me llamo {identity.firstName}.</li>
+		  <li>Vivo en {identity.country} y trabajo como {identity.occupation}.</li>
+		  {identity.hobbies.length >= 2 &&
+			<li>Dos de mis aficiones son: {identity.hobbies[0]} y {identity.hobbies[1]}</li>
+		  }
+		</ul>
+		<p>Mis habilidades son:</p>
+		<ul>
+		  {skills.map((skill) => <li class="skill">{skill}</li>)}
+		</ul> 
 
-</body>    
+		{happy && <p>¡Estoy feliz de aprender Astro!</p>}
 
-<style>
-	main {
-		margin: auto;
-		padding: 1rem;
-		width: 800px;
-		max-width: calc(100% - 2rem);
-		color: white;
-		font-size: 20px;
-		line-height: 1.6;
-	}
-	.astro-a {
-		position: absolute;
-		top: -32px;
-		left: 50%;
-		transform: translatex(-50%);
-		width: 220px;
-		height: auto;
-		z-index: -1;
-	}
-	h1 {
-		font-size: 4rem;
-		font-weight: 700;
-		line-height: 1;
-		text-align: center;
-		margin-bottom: 1em;
-	}
-	.text-gradient {
-		background-image: var(--accent-gradient);
-		-webkit-background-clip: text;
-		-webkit-text-fill-color: transparent;
-		background-size: 400%;
-		background-position: 0%;
-	}
-	.instructions {
-		margin-bottom: 2rem;
-		border: 1px solid rgba(var(--accent-light), 25%);
-		background: linear-gradient(rgba(var(--accent-dark), 66%), rgba(var(--accent-dark), 33%));
-		padding: 1.5rem;
-		border-radius: 8px;
-	}
-	.instructions code {
-		font-size: 0.8em;
-		font-weight: bold;
-		background: rgba(var(--accent-light), 12%);
-		color: rgb(var(--accent-light));
-		border-radius: 4px;
-		padding: 0.3em 0.4em;
-	}
-	.instructions strong {
-		color: rgb(var(--accent-light));
-	}
-	.link-card-grid {
-		display: grid;
-		grid-template-columns: repeat(auto-fit, minmax(24ch, 1fr));
-		gap: 2rem;
-		padding: 0;
-	}
-</style>
+		{finished && <p>¡He terminado este tutorial!</p>}
+
+		{goal === 3 ? <p>Mi objetivo es terminar en 3 días.</p> : <p>Mi objetivo no son 3 días.</p>}
+	
+    
+    </body>  
+</html>
+
+  
